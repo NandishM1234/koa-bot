@@ -1,6 +1,6 @@
 import discord
 import responses
-
+import os
 async def send_message(message, user_message,channel):
     try:
         response = responses.get_response(user_message)
@@ -11,7 +11,7 @@ async def send_message(message, user_message,channel):
 
 
 def run_discord_bot():
-    TOKEN = 'MTAzOTQ2MzY3NDc4NTU3MDgxNg.GJ66Qc.u7uXotzMYj3boCURRiuH5JKiQPNUf-wicXG180'
+    TOKEN = os.environ["DISCORD_TOKEN"]
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
