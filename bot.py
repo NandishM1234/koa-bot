@@ -1,21 +1,27 @@
 import discord
+
+import releasedate
 import responses
 import os
-async def send_message(message, user_message,channel):
+
+
+async def send_message(message, user_message, channel):
     try:
-        response = responses.get_response(user_message)
+        response = responses.get_response(channel, user_message)
+        date = releasedate.get_release_date()
         if channel == 'general':
             await message.channel.send(response)
+            if len(response) > 0:
+                await message.channel.send(date)
     except Exception as e:
         print(e)
 
 
 def run_discord_bot():
-    TOKEN = os.environ["DISCORD_TOKEN"]
+    token = 'MTAzOTQ2MzY3NDc4NTU3MDgxNg.G0egCd.mbUeA52EbpKVWJYFvSvoIGiTCaa0190ie974gs'
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
-
 
     @client.event
     async def on_ready():
@@ -30,4 +36,4 @@ def run_discord_bot():
         channel = str(message.channel)
 
         await send_message(message, user_message, channel)
-    client.run(TOKEN)
+    client.run(token)
