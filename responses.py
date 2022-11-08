@@ -17,12 +17,12 @@ def get_response(message: str) -> str:
             finally:
                 if dev_month_count < len(dev_month):
                     dev_month += 1
-                    return (('The release date estimate is extended by an month!'
-                             'It will release in ' and (dev_month[dev_month_count])(dev_year)))
+                    print(("The release date estimate is extended by an month!"
+                           "It will release in {month} {year}".format(month=dev_month[dev_month_count], year=dev_year)))
                 elif dev_month_count == 12:
                     dev_month_count = 0
                     dev_year += 1
-                    return (('The release date estimate is extended by an month!'
-                             'It will release in ' and (dev_month[dev_month_count])(dev_year)))
+                    print(("The release date estimate is extended by an month!"
+                           "It will release in {month} {year}".format(month=dev_month[dev_month_count], year=dev_year)))
         else:
             word += 1
